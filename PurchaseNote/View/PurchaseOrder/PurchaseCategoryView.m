@@ -9,6 +9,8 @@
 #import "PurchaseCategoryView.h"
 #import "EmptyView.h"
 #import "DBHelper.h"
+#import "CategoriesItem.h"
+#import "ProductsItem.h"
 
 @interface PurchaseCategoryView()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -27,6 +29,20 @@ static NSString *pCellId = @"productCell";
 
 @implementation PurchaseCategoryView
 
+#pragma mark - Data Change
+
+- (void)setCategoryItemArray:(NSArray *)categoryItemArray {
+    _categoryItemArray = categoryItemArray;
+    [_categoryTableView reloadData];
+}
+
+- (void)setProductItemArray:(NSArray *)productItemArray {
+    _productItemArray = productItemArray;
+    [_productTableView reloadData];
+}
+
+#pragma mark - init
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupSubViews];
@@ -39,8 +55,6 @@ static NSString *pCellId = @"productCell";
     CGFloat screenHeight = self.bounds.size.height;
     CGFloat categoryWidth = screenWidth * 0.35;
     CGFloat productWidth = screenWidth * 0.65;
-    
-    self.categoryCount = 0;
     
     _emptyView = [[EmptyView alloc] initWithFrame:self.bounds];
     
@@ -61,25 +75,16 @@ static NSString *pCellId = @"productCell";
     NSLog(@"category exsist : %zd",[DBHelper doesExsistCategory]);
 }
 
-- (void)setCategoryCount:(NSInteger)categoryCount {
-    _categoryCount = categoryCount;
-    [_categoryTableView reloadData];
-    [_productTableView reloadData];
-}
-
-
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView.tag == kCTag) {
-        
-        if (self.categoryCount == 0) {
+        if (![DBHelper doesExsistCategory]) {
             [self addSubview:_emptyView];
         } else {
             [_emptyView removeFromSuperview];
         }
-        
-        return self.categoryCount;
+        return self.categoryItemArray.count;;
     }
     return 10;
 }
@@ -88,13 +93,13 @@ static NSString *pCellId = @"productCell";
     UITableViewCell *cell = nil;
     if (tableView.tag == kCTag) {
         cell = [tableView dequeueReusableCellWithIdentifier:cCellId];
-        cell.textLabel.text = [NSString stringWithFormat:@"category %zd",indexPath.row];
+        CategoriesItem *cItem = self.categoryItemArray[indexPath.row];
+        cell.textLabel.text = cItem.categoryName;
         return cell;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:pCellId];
         cell.textLabel.text = [NSString stringWithFormat:@"product %zd",indexPath.row];
         return cell;
-
     }
 }
 

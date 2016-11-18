@@ -33,4 +33,9 @@
  */
 + (void)addCategoryWithCategoriesItem:(CategoriesItem *)categoriesItem;
 
+/**
+ 获取商品分类
+ */
++ (NSArray *)getCategoriesItemArray;
+
 @end

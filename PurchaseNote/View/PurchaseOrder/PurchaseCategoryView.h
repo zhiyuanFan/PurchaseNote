@@ -10,7 +10,12 @@
 
 @interface PurchaseCategoryView : UIView
 
-/** count */
-@property (nonatomic , assign) NSInteger categoryCount;
+/** categoryItemArray */
+@property (nonatomic , strong) NSArray *categoryItemArray;
+
+/** productItemArray */
+@property (nonatomic , strong) NSArray *productItemArray;
+
+
 
 @end

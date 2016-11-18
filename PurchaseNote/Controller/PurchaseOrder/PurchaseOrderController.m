@@ -9,6 +9,7 @@
 #import "PurchaseOrderController.h"
 #import "PurchaseCategoryView.h"
 #import "AddCategoryViewController.h"
+#import "DBHelper.h"
 
 @interface PurchaseOrderController ()
 
@@ -19,6 +20,8 @@
 @end
 
 @implementation PurchaseOrderController
+
+#pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +41,17 @@
     [self.view addSubview:self.pcView];
     
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCategoryTable) name:@"kAddCategory" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Event
 
 - (void)addCategoryOrProducts {
     UIAlertAction *addCategoryAction = [UIAlertAction actionWithTitle:@"添加类别信息"
@@ -75,8 +89,11 @@
 }
 
 
+#pragma mark - Notification Event
 
-
+- (void)reloadCategoryTable {
+    self.pcView.categoryItemArray = [DBHelper getCategoriesItemArray];
+}
 
 
 - (void)didReceiveMemoryWarning {

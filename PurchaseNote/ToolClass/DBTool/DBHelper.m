@@ -70,7 +70,7 @@ static FMDatabaseQueue *_dbQueue;
 }
 
 + (void)addCategoryWithCategoriesItem:(CategoriesItem *)categoriesItem {
-    NSNumber *categoryId = [NSNumber numberWithInteger:categoriesItem.categoryId]; 
+    NSNumber *categoryId = [NSNumber numberWithInteger:categoriesItem.categoryId];
     NSString *categoryName = categoriesItem.categoryName;
     if (categoryId && categoryName) {
         NSString *insertSql = @"INSERT INTO t_categories (CategoryId, CategoryName) VALUES (?,?)";
@@ -84,6 +84,23 @@ static FMDatabaseQueue *_dbQueue;
         NSLog(@"Missing parameters");
         return;
     }
+}
+
++ (NSArray *)getCategoriesItemArray {
+    NSMutableArray *itemArray = [NSMutableArray array];
+    if ([self doesExsistCategory]) {
+        NSString *selectSql = @"SELECT CategoryId ,CategoryName FROM t_categories";
+        FMResultSet *rs = [_db executeQuery:selectSql];
+        while ([rs next]) {
+            CategoriesItem *cItem = [[CategoriesItem alloc] init];
+            cItem.categoryId = [rs intForColumn:@"CategoryId"];
+            cItem.categoryName = [rs stringForColumn:@"CategoryName"];
+            [itemArray addObject:cItem];
+        }
+    } else {
+        NSLog(@"Database have no data to fatch");
+    }
+    return itemArray;
 }
 
 @end

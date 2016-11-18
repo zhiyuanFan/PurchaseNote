@@ -103,6 +103,7 @@
             NSLog(@"Missing Parameters");
         } else {
             [DBHelper addCategoryWithCategoriesItem:cItem];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kAddCategory" object:nil];
         }
     }
     [self dismissVC];
