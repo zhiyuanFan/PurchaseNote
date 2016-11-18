@@ -70,7 +70,7 @@ static FMDatabaseQueue *_dbQueue;
 }
 
 + (void)addCategoryWithCategoriesItem:(CategoriesItem *)categoriesItem {
-    NSNumber *categoryId = [NSNumber numberWithInteger:categoriesItem.categoryId];
+    NSNumber *categoryId = [NSNumber numberWithInteger:categoriesItem.categoryId]; 
     NSString *categoryName = categoriesItem.categoryName;
     if (categoryId && categoryName) {
         NSString *insertSql = @"INSERT INTO t_categories (CategoryId, CategoryName) VALUES (?,?)";
