@@ -20,7 +20,7 @@ static NSString *cellId = @"cellId";
     [super viewDidLoad];
  
     self.title = @"备注";
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
 }
 

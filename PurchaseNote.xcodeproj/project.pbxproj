@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DA12263C1DDDB1F9001F37D3 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA12263B1DDDB1F9001F37D3 /* EmptyView.m */; };
+		DA4B95E81DDE05AE00B38CCE /* AddCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4B95E71DDE05AE00B38CCE /* AddCategoryViewController.m */; };
+		DA4B95EB1DDE05E000B38CCE /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4B95EA1DDE05E000B38CCE /* AddProductViewController.m */; };
 		DA89C3291DDD5569007A86DC /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DA89C2FD1DDD5569007A86DC /* LICENSE.txt */; };
 		DA89C32A1DDD5569007A86DC /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = DA89C2FE1DDD5569007A86DC /* README.markdown */; };
 		DA89C32B1DDD5569007A86DC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA89C3021DDD5569007A86DC /* FMDatabase.m */; };
@@ -47,6 +49,10 @@
 /* Begin PBXFileReference section */
 		DA12263A1DDDB1F9001F37D3 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		DA12263B1DDDB1F9001F37D3 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
+		DA4B95E61DDE05AE00B38CCE /* AddCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoryViewController.h; sourceTree = "<group>"; };
+		DA4B95E71DDE05AE00B38CCE /* AddCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryViewController.m; sourceTree = "<group>"; };
+		DA4B95E91DDE05E000B38CCE /* AddProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
+		DA4B95EA1DDE05E000B38CCE /* AddProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
 		DA89C2FD1DDD5569007A86DC /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DA89C2FE1DDD5569007A86DC /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		DA89C3011DDD5569007A86DC /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -334,6 +340,10 @@
 			children = (
 				DAFCF7961DDC777100B09F5E /* PurchaseOrderController.h */,
 				DAFCF7971DDC777100B09F5E /* PurchaseOrderController.m */,
+				DA4B95E61DDE05AE00B38CCE /* AddCategoryViewController.h */,
+				DA4B95E71DDE05AE00B38CCE /* AddCategoryViewController.m */,
+				DA4B95E91DDE05E000B38CCE /* AddProductViewController.h */,
+				DA4B95EA1DDE05E000B38CCE /* AddProductViewController.m */,
 			);
 			path = PurchaseOrder;
 			sourceTree = "<group>";
@@ -416,6 +426,7 @@
 				TargetAttributes = {
 					DAF66D3B1DDC3E9A00806BAF = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TVNZA2SKF6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -465,7 +476,9 @@
 				DA89C32B1DDD5569007A86DC /* FMDatabase.m in Sources */,
 				DA89C33B1DDD5569007A86DC /* README.md in Sources */,
 				DA89C3391DDD5569007A86DC /* View+MASAdditions.m in Sources */,
+				DA4B95EB1DDE05E000B38CCE /* AddProductViewController.m in Sources */,
 				DAFCF7951DDC51B600B09F5E /* MainNavigationController.m in Sources */,
+				DA4B95E81DDE05AE00B38CCE /* AddCategoryViewController.m in Sources */,
 				DA89C3351DDD5569007A86DC /* MASViewAttribute.m in Sources */,
 				DA977A441DDD760C00BA7F1F /* main.m in Sources */,
 				DA12263C1DDDB1F9001F37D3 /* EmptyView.m in Sources */,
@@ -525,7 +538,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 470682585@qq.com (3J578MGXMZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 470682585@qq.com (3J578MGXMZ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -572,7 +586,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 470682585@qq.com (3J578MGXMZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 470682585@qq.com (3J578MGXMZ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -596,6 +611,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = TVNZA2SKF6;
 				INFOPLIST_FILE = "$(SRCROOT)/PurchaseNote/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fzy.PurchaseNote;
@@ -607,6 +624,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = TVNZA2SKF6;
 				INFOPLIST_FILE = "$(SRCROOT)/PurchaseNote/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fzy.PurchaseNote;

@@ -8,6 +8,7 @@
 
 #import "PurchaseCategoryView.h"
 #import "EmptyView.h"
+#import "DBHelper.h"
 
 @interface PurchaseCategoryView()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -56,6 +57,8 @@ static NSString *pCellId = @"productCell";
     _productTableView.dataSource = self;
     _productTableView.delegate = self;
     [self addSubview:_productTableView];
+    
+    NSLog(@"category exsist : %zd",[DBHelper doesExsistCategory]);
 }
 
 - (void)setCategoryCount:(NSInteger)categoryCount {

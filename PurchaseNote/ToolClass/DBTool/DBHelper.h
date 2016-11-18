@@ -8,9 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class FMDatabase;
+#define errorCategoryId 500
+
+@class FMDatabase,CategoriesItem;
 @interface DBHelper : NSObject
 
+/**
+ 创建数据库
+ */
 + (FMDatabase *)db;
+
+/**
+ 判断是否存在商品分类
+ */
++ (BOOL)doesExsistCategory;
+
+/**
+ 获取商品分类最大Id
+ */
++ (NSInteger)getMaxCategoryId;
+
+/**
+ 新建商品分类
+ */
++ (void)addCategoryWithCategoriesItem:(CategoriesItem *)categoriesItem;
 
 @end

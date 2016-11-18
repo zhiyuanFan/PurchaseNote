@@ -8,6 +8,9 @@
 
 #import "DBHelper.h"
 #import "FMDB.h"
+#import "CategoriesItem.h"
+#import "ProductsItem.h"
+#import "NotesItem.h"
 
 @implementation DBHelper
 
@@ -37,6 +40,50 @@ static FMDatabaseQueue *_dbQueue;
         }
     }];
     return _db;
+}
+
++ (BOOL)doesExsistCategory {
+    NSString *selectSql = @"SELECT count(*) AS CategoryCount FROM t_categories";
+    FMResultSet *rs = [_db executeQuery:selectSql];
+    if ([rs next]) {
+        NSInteger categoryCount = [rs intForColumn:@"CategoryCount"];
+        return categoryCount > 0 ? YES : NO;
+    } else {
+        return NO;
+    }
+}
+
++ (NSInteger)getMaxCategoryId {
+    NSInteger minId = 1;
+    if (![self doesExsistCategory]) {
+        return minId;
+    } else {
+        NSString *selectSql = @"SELECT max(CategoryId) AS MaxId ,CategoryName FROM t_categories";
+        FMResultSet *rs = [_db executeQuery:selectSql];
+        if ([rs next]) {
+            NSInteger maxId = [rs intForColumn:@"MaxId"];
+            return maxId + 1;
+        } else {
+            return errorCategoryId;
+        }
+    }
+}
+
++ (void)addCategoryWithCategoriesItem:(CategoriesItem *)categoriesItem {
+    NSNumber *categoryId = [NSNumber numberWithInteger:categoriesItem.categoryId];
+    NSString *categoryName = categoriesItem.categoryName;
+    if (categoryId && categoryName) {
+        NSString *insertSql = @"INSERT INTO t_categories (CategoryId, CategoryName) VALUES (?,?)";
+        BOOL result = [_db executeUpdate:insertSql,categoryId,categoryName];
+        if (result) {
+            NSLog(@"insert successfull");
+        } else {
+            NSLog(@"insert failed");
+        }
+    } else {
+        NSLog(@"Missing parameters");
+        return;
+    }
 }
 
 @end

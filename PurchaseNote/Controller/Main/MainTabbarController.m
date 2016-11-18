@@ -34,9 +34,14 @@
                              [self setupNavigatorWithViewController:NTVC]
                              ];
 
-    NSArray *titleArray = @[@"订单",@"备注"];
+    NSArray *titleArray = @[@"进货单",@"备注"];
+    NSArray *imageArray = @[
+                            [UIImage imageNamed:@"tabbar_purchase"],
+                            [UIImage imageNamed:@"tabbar_note"]
+                            ];
     [self.tabBar.items enumerateObjectsUsingBlock:^(UITabBarItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         [item setTitle:titleArray[idx]];
+        [item setImage:imageArray[idx]];
     }];
 }
 

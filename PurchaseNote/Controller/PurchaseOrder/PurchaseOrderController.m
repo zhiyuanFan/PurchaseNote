@@ -8,6 +8,7 @@
 
 #import "PurchaseOrderController.h"
 #import "PurchaseCategoryView.h"
+#import "AddCategoryViewController.h"
 
 @interface PurchaseOrderController ()
 
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"订单";
+    self.title = @"进货单";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -39,8 +40,44 @@
 }
 
 - (void)addCategoryOrProducts {
-    self.pcView.categoryCount ++;
+    UIAlertAction *addCategoryAction = [UIAlertAction actionWithTitle:@"添加类别信息"
+                                                                     style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                                       [self addCategoryInfo];
+                                                                   }];
+    UIAlertAction *addProductAction = [UIAlertAction actionWithTitle:@"添加商品信息"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * _Nonnull action) {
+                                                                      [self addProductInfo];
+                                                                  }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             
+                                                         }];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [actionSheet addAction:addCategoryAction];
+    [actionSheet addAction:addProductAction];
+    [actionSheet addAction:cancelAction];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+
 }
+
+- (void)addCategoryInfo {
+    AddCategoryViewController *ACVC = [[AddCategoryViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ACVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)addProductInfo {
+
+}
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
