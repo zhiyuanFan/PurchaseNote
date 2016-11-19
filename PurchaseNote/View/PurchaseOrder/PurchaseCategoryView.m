@@ -71,8 +71,6 @@ static NSString *pCellId = @"productCell";
     _productTableView.dataSource = self;
     _productTableView.delegate = self;
     [self addSubview:_productTableView];
-    
-    NSLog(@"category exsist : %zd",[DBHelper doesExsistCategory]);
 }
 
 #pragma mark - Table View Data Source

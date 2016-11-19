@@ -76,12 +76,12 @@ static FMDatabaseQueue *_dbQueue;
         NSString *insertSql = @"INSERT INTO t_categories (CategoryId, CategoryName) VALUES (?,?)";
         BOOL result = [_db executeUpdate:insertSql,categoryId,categoryName];
         if (result) {
-            NSLog(@"insert successfull");
+            NSLog(@"添加成功:商品分类");
         } else {
-            NSLog(@"insert failed");
+            NSLog(@"添加失败:商品分类");
         }
     } else {
-        NSLog(@"Missing parameters");
+        NSLog(@"添加失败:缺少参数:商品分类");
         return;
     }
 }
@@ -98,7 +98,7 @@ static FMDatabaseQueue *_dbQueue;
             [itemArray addObject:cItem];
         }
     } else {
-        NSLog(@"Database have no data to fatch");
+        NSLog(@"数据获取失败:无数据");
     }
     return itemArray;
 }

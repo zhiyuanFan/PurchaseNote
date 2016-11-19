@@ -9,6 +9,7 @@
 #import "PurchaseOrderController.h"
 #import "PurchaseCategoryView.h"
 #import "AddCategoryViewController.h"
+#import "AddProductViewController.h"
 #import "DBHelper.h"
 
 @interface PurchaseOrderController ()
@@ -39,6 +40,8 @@
 
     self.pcView = [[PurchaseCategoryView alloc] initWithFrame:CGRectMake(0, 64, screenWidth, screenHeight - 113)];
     [self.view addSubview:self.pcView];
+    
+    [self reloadCategoryTable];
     
 }
 
@@ -85,7 +88,14 @@
 }
 
 - (void)addProductInfo {
-
+    if (![DBHelper doesExsistCategory]) {
+        NSLog(@"请先添加商品分类");
+        return;
+    } else {
+        AddProductViewController *APVC = [[AddProductViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:APVC];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 

@@ -37,6 +37,7 @@
 		DA977A421DDD760C00BA7F1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA977A3F1DDD760C00BA7F1F /* AppDelegate.m */; };
 		DA977A431DDD760C00BA7F1F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA977A401DDD760C00BA7F1F /* Info.plist */; };
 		DA977A441DDD760C00BA7F1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA977A411DDD760C00BA7F1F /* main.m */; };
+		DADB270C1DE01402000199DE /* PNTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DADB270B1DE01402000199DE /* PNTextField.m */; };
 		DAF66D4C1DDC3E9B00806BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF66D4B1DDC3E9B00806BAF /* Assets.xcassets */; };
 		DAF66D4F1DDC3E9B00806BAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF66D4D1DDC3E9B00806BAF /* LaunchScreen.storyboard */; };
 		DAFCF7921DDC518F00B09F5E /* MainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFCF7911DDC518F00B09F5E /* MainTabbarController.m */; };
@@ -106,6 +107,8 @@
 		DA977A3F1DDD760C00BA7F1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DA977A401DDD760C00BA7F1F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA977A411DDD760C00BA7F1F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DADB270A1DE01402000199DE /* PNTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNTextField.h; sourceTree = "<group>"; };
+		DADB270B1DE01402000199DE /* PNTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNTextField.m; sourceTree = "<group>"; };
 		DAF66D3C1DDC3E9B00806BAF /* PurchaseNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PurchaseNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF66D4B1DDC3E9B00806BAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAF66D4E1DDC3E9B00806BAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -276,6 +279,15 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		DADB27091DE013C9000199DE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DADB270A1DE01402000199DE /* PNTextField.h */,
+				DADB270B1DE01402000199DE /* PNTextField.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DAF66D331DDC3E9A00806BAF = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +372,7 @@
 		DAFCF7721DDC46ED00B09F5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DADB27091DE013C9000199DE /* Common */,
 				DAFCF79D1DDC7F1500B09F5E /* Notes */,
 				DAFCF79C1DDC7EF800B09F5E /* PurchaseOrder */,
 			);
@@ -484,6 +497,7 @@
 				DA12263C1DDDB1F9001F37D3 /* EmptyView.m in Sources */,
 				DA89C3461DDD56C2007A86DC /* CategoriesItem.m in Sources */,
 				DA89C3331DDD5569007A86DC /* MASConstraintMaker.m in Sources */,
+				DADB270C1DE01402000199DE /* PNTextField.m in Sources */,
 				DA89C32E1DDD5569007A86DC /* FMDatabaseQueue.m in Sources */,
 				DA89C3431DDD56AC007A86DC /* ProductsItem.m in Sources */,
 				DA89C32F1DDD5569007A86DC /* FMResultSet.m in Sources */,

@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "DBHelper.h"
 #import "CategoriesItem.h"
+#import "PNTextField.h"
 
 @interface AddCategoryViewController ()
 {
@@ -47,14 +48,7 @@
 #pragma mark - init subviews
 
 - (void)setupSubViews {
-    _txtCategoryName = [[UITextField alloc] init];
-    _txtCategoryName.placeholder = @"请输入商品类别";
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 40)];
-    _txtCategoryName.leftView = paddingView;
-    _txtCategoryName.leftViewMode = UITextFieldViewModeAlways;
-    _txtCategoryName.layer.borderColor = [UIColor blackColor].CGColor;
-    _txtCategoryName.layer.borderWidth = 1;
-    _txtCategoryName.layer.cornerRadius = 20;
+    _txtCategoryName = [[PNTextField alloc] initWithPlaceholderText:@"请输入商品类别"];
     [_txtCategoryName becomeFirstResponder];
     [self.view addSubview:_txtCategoryName];
     
@@ -96,11 +90,11 @@
     CategoriesItem *cItem = [[CategoriesItem alloc] init];
     cItem.categoryId = [DBHelper getMaxCategoryId];
     if (cItem.categoryId == errorCategoryId) {
-        NSLog(@"数据库数据错误");
+        NSLog(@"添加失败:数据库数据错误");
     } else {
         cItem.categoryName = _txtCategoryName.text;
         if ([cItem.categoryName isEqualToString:@""] || !cItem.categoryName) {
-            NSLog(@"Missing Parameters");
+            NSLog(@"添加失败:缺少参数");
         } else {
             [DBHelper addCategoryWithCategoriesItem:cItem];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kAddCategory" object:nil];
