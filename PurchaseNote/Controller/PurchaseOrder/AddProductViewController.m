@@ -11,11 +11,14 @@
 #import "ProductsItem.h"
 #import "DBHelper.h"
 #import "PNTextField.h"
+#import "PNDropDownList.h"
 
 @interface AddProductViewController ()
 {
     UIImageView *_productImageView;
+    UILabel *_lblTips;
     UILabel *_lblCategoryName;
+    PNDropDownList *_categoryList;
     UITextField *_txtProductName;
     UITextField *_txtPrice;
     UIButton *_submitBtn;
@@ -55,10 +58,18 @@
     _productImageView.image = [UIImage imageNamed:@"plus"];
     [self.view addSubview:_productImageView];
     
+    _lblTips = [[UILabel alloc] init];
+    _lblTips.textAlignment = NSTextAlignmentCenter;
+    _lblTips.text = @"添加商品图片";
+    [self.view addSubview:_lblTips];
+    
     _lblCategoryName = [[UILabel alloc] init];
     _lblCategoryName.textAlignment = NSTextAlignmentCenter;
     _lblCategoryName.text = [NSString stringWithFormat:@"商品类别: "];
     [self.view addSubview:_lblCategoryName];
+    
+    _categoryList = [[PNDropDownList alloc] initWithFrame:CGRectMake(0, 0, 170, 40)];
+    [self.view addSubview:_categoryList];
     
     _txtProductName = [[PNTextField alloc] initWithPlaceholderText:@"请输入商品名称"];
     [self.view addSubview:_txtProductName];
@@ -101,11 +112,25 @@
         make.size.mas_equalTo(CGSizeMake(70, 70));
     }];
     
-    [_lblCategoryName mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_lblTips mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_productImageView.mas_bottom).mas_offset(20);
         make.centerX.mas_equalTo(0);
         make.left.mas_equalTo(margin);
         make.right.mas_equalTo(-margin);
+    }];
+
+    
+    [_lblCategoryName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lblTips.mas_bottom).mas_offset(20);
+        make.left.mas_equalTo(margin);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [_categoryList mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_lblTips.mas_bottom).mas_offset(20);
+        make.right.mas_equalTo(-margin);
+        make.left.mas_equalTo(_lblCategoryName.mas_right).mas_offset(0);
+        make.height.mas_equalTo(40);
     }];
 
     [_txtProductName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,6 +171,7 @@
 }
 
 - (void)dismissVC {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
