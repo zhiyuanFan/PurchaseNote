@@ -13,9 +13,22 @@
     UITextField *_txtField;
 }
 
+/** tableView */
+@property (nonatomic , strong) UITableView *listTableView;
+
+
 @end
 
 @implementation PNDropDownList
+
+- (UITableView *)listTableView {
+    if (!_listTableView) {
+        _listTableView = [[UITableView alloc] init];
+        _listTableView.backgroundColor = [UIColor lightGrayColor];
+    }
+    return _listTableView;
+}
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -43,7 +56,6 @@
     
     _txtField.layer.borderColor = [UIColor blackColor].CGColor;
     _txtField.layer.borderWidth = 1;
-    _txtField.layer.cornerRadius = 20;
     
     [self addSubview:_txtField];
 }
@@ -52,6 +64,21 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     NSLog(@"begin editing");
     [_txtField resignFirstResponder];
+    NSLog(@"view frame : %@",NSStringFromCGRect(self.frame));
+    CGFloat tableViewX = self.frame.origin.x;
+    CGFloat tableViewY = self.frame.origin.y  + self.frame.size.height;
+    CGFloat tableViewWidth = self.frame.size.width;
+    CGFloat tableViewHeight = 200;
+    
+    self.listTableView.frame = CGRectMake(tableViewX, tableViewY, tableViewWidth, tableViewHeight);
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (![window.subviews containsObject:self.listTableView]) {
+        [window addSubview:self.listTableView];
+    } else {
+        [self.listTableView removeFromSuperview];
+    }
 }
+
+
 
 @end

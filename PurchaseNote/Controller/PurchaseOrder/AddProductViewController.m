@@ -128,7 +128,8 @@
     
     [_categoryList mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_lblTips.mas_bottom).mas_offset(20);
-        make.right.mas_equalTo(-margin);
+//        make.right.mas_equalTo(-margin);
+        make.width.mas_equalTo(170);
         make.left.mas_equalTo(_lblCategoryName.mas_right).mas_offset(0);
         make.height.mas_equalTo(40);
     }];
