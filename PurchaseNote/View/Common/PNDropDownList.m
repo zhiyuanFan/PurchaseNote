@@ -8,7 +8,7 @@
 
 #import "PNDropDownList.h"
 
-@interface PNDropDownList()<UITextFieldDelegate>
+@interface PNDropDownList()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UITextField *_txtField;
 }
@@ -19,12 +19,19 @@
 
 @end
 
+static NSString *cellId = @"reuseCell";
 @implementation PNDropDownList
 
 - (UITableView *)listTableView {
     if (!_listTableView) {
         _listTableView = [[UITableView alloc] init];
-        _listTableView.backgroundColor = [UIColor lightGrayColor];
+
+        _listTableView.layer.borderWidth = 1;
+        _listTableView.layer.backgroundColor = [UIColor blackColor].CGColor;
+        
+        _listTableView.delegate = self;
+        _listTableView.dataSource = self;
+        [_listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
     }
     return _listTableView;
 }
@@ -79,6 +86,22 @@
     }
 }
 
+#pragma mark - Table View Data Source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    cell.textLabel.text = [NSString stringWithFormat:@"product %zd",indexPath.row];
+    return cell;
+    
+}
+
+#pragma mark - Table View Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    _txtField.text = [NSString stringWithFormat:@"product %zd",indexPath.row];
+    [self.listTableView removeFromSuperview];
+}
 
 @end
