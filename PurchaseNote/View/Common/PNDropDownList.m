@@ -7,6 +7,8 @@
 //
 
 #import "PNDropDownList.h"
+#import "DBHelper.h"
+#import "CategoriesItem.h"
 
 @interface PNDropDownList()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -15,6 +17,10 @@
 
 /** tableView */
 @property (nonatomic , strong) UITableView *listTableView;
+
+/** categoryList */
+@property (nonatomic , strong) NSMutableArray *categoryArray;
+
 
 
 @end
@@ -31,9 +37,20 @@ static NSString *cellId = @"reuseCell";
         
         _listTableView.delegate = self;
         _listTableView.dataSource = self;
+        _listTableView.tableFooterView = [[UIView alloc] init];
         [_listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
     }
     return _listTableView;
+}
+
+- (NSMutableArray *)categoryArray {
+    if (!_categoryArray) {
+        NSArray *dbList = [DBHelper getCategoriesItemArray];
+        if (dbList) {
+            _categoryArray = [NSMutableArray arrayWithArray:dbList];
+        }
+    }
+    return _categoryArray;
 }
 
 
@@ -88,20 +105,34 @@ static NSString *cellId = @"reuseCell";
 
 #pragma mark - Table View Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.categoryArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    cell.textLabel.text = [NSString stringWithFormat:@"product %zd",indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    CategoriesItem *item = self.categoryArray[indexPath.row];
+    cell.textLabel.text = item.categoryName;
     return cell;
     
 }
 
 #pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _txtField.text = [NSString stringWithFormat:@"product %zd",indexPath.row];
+    CategoriesItem *item = self.categoryArray[indexPath.row];
+    _txtField.text = item.categoryName;
+    self.selectedKey = item.categoryName;
+    self.selectedValue = item.categoryId;
     [self.listTableView removeFromSuperview];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 @end

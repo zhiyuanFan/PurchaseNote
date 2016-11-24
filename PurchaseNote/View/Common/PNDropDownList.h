@@ -10,4 +10,10 @@
 
 @interface PNDropDownList : UIView
 
+/** selectedKey */
+@property (nonatomic , strong) NSString *selectedKey;
+
+/** selectedValue */
+@property (nonatomic , assign) NSInteger selectedValue;
+
 @end

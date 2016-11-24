@@ -40,14 +40,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [self.view endEditing:YES];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 
@@ -75,6 +76,7 @@
     [self.view addSubview:_txtProductName];
     
     _txtPrice = [[PNTextField alloc] initWithPlaceholderText:@"请输入商品单价"];
+    _txtPrice.keyboardType = UIKeyboardTypeDecimalPad;
     [self.view addSubview:_txtPrice];
     
     _submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -168,6 +170,8 @@
 
 - (void)submitBtnOnClick {
     
+    NSLog(@"key: %@ --  value : %zd",_categoryList.selectedKey,_categoryList.selectedValue);
+    
     [self dismissVC];
 }
 
@@ -186,44 +190,44 @@
 
 
 #pragma mark - 根据键盘的显示和隐藏修改按钮的约束
-- (void)keyboardWillShow:(NSNotification *)note {
-    CGRect keyboardBounds = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    _keyboardHeight = keyboardBounds.size.height;
-    [self updateSubmitBtnConstraints];
-}
-
-- (void)keyboardWillHide:(NSNotification *)note {
-    _keyboardHeight = 0;
-    [self updateSubmitBtnConstraints];
-}
-
-- (void)updateSubmitBtnConstraints {
-    CGFloat margin = 20;
-    CGFloat btnWidth = (self.view.bounds.size.width - 3 * margin) / 2;
-    CGFloat btnHeight = 40;
-    
-    [_submitBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-_keyboardHeight - 20);
-        make.left.mas_equalTo(margin);
-        make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
-    }];
-    
-    [_cancelBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-_keyboardHeight - 20);
-        make.right.mas_equalTo(-margin);
-        make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
-    }];
-    
-    
-    [self.view setNeedsUpdateConstraints];
-    [UIView animateKeyframesWithDuration:0.25
-                                   delay:0
-                                 options:7<<16
-                              animations:^{
-                                  [self.view layoutIfNeeded];
-                              }
-                              completion:nil];
-}
+//- (void)keyboardWillShow:(NSNotification *)note {
+//    CGRect keyboardBounds = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    _keyboardHeight = keyboardBounds.size.height;
+//    [self updateSubmitBtnConstraints];
+//}
+//
+//- (void)keyboardWillHide:(NSNotification *)note {
+//    _keyboardHeight = 0;
+//    [self updateSubmitBtnConstraints];
+//}
+//
+//- (void)updateSubmitBtnConstraints {
+//    CGFloat margin = 20;
+//    CGFloat btnWidth = (self.view.bounds.size.width - 3 * margin) / 2;
+//    CGFloat btnHeight = 40;
+//    
+//    [_submitBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(-_keyboardHeight - 20);
+//        make.left.mas_equalTo(margin);
+//        make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
+//    }];
+//    
+//    [_cancelBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(-_keyboardHeight - 20);
+//        make.right.mas_equalTo(-margin);
+//        make.size.mas_equalTo(CGSizeMake(btnWidth, btnHeight));
+//    }];
+//    
+//    
+//    [self.view setNeedsUpdateConstraints];
+//    [UIView animateKeyframesWithDuration:0.25
+//                                   delay:0
+//                                 options:7<<16
+//                              animations:^{
+//                                  [self.view layoutIfNeeded];
+//                              }
+//                              completion:nil];
+//}
 
 
 
